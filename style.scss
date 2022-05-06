@@ -1,0 +1,232 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap");
+
+$veryDarkGrayishBlue: hsl(217, 19%, 35%);
+$desaturatedDarkBlue: hsl(214, 17%, 51%);
+$grayishBlue: hsl(212, 23%, 69%);
+$lightGrayishBlue: hsl(210, 46%, 95%);
+$white: hsl(255, 255, 255);
+
+:root {
+  --fs-13: 13px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: "Manrope", sans-serif;
+}
+
+body {
+  height: 100vh;
+  font-size: var(--fs-13);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $lightGrayishBlue;
+
+  .card {
+    background-color: $white;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    box-shadow: 0px 5px 7px 0px hsl(0, 0%, 80%);
+    width: 50%;
+    .banner-container {
+      border-radius: 10px 0px 0px 10px;
+      overflow: hidden;
+      .banner {
+        object-fit: cover;
+        object-position: left;
+        width: 100%;
+        height: 100%;
+        filter: brightness(105%);
+      }
+    }
+    .card-infos-wrapper {
+      padding: 1.3rem 2rem;
+      .card-infos {
+        margin-bottom: 1rem;
+        h2 {
+          margin-bottom: 1rem;
+          color: $veryDarkGrayishBlue;
+        }
+        p {
+          color: $grayishBlue;
+        }
+      }
+      .card-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .author-info {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          .author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+          }
+          .author-name {
+            display: block;
+            color: $veryDarkGrayishBlue;
+            font-weight: 700;
+          }
+          .date-published {
+            color: $grayishBlue;
+          }
+        }
+        .share {
+          position: relative;
+          z-index: 1;
+          .btn {
+            padding: 0.5rem;
+            display: block;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s ease-out;
+            &.active {
+              background-color: $veryDarkGrayishBlue;
+              ion-icon {
+                color: white;
+              }
+            }
+            ion-icon {
+              color: $veryDarkGrayishBlue;
+            }
+          }
+          .share-options {
+            padding: 1rem 3rem;
+            transform: translate(-44%, -150%) scale(0);
+            box-shadow: 0px 5px 7px 0px hsl(0, 0%, 80%);
+            background-color: $veryDarkGrayishBlue;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: absolute;
+            top: 0;
+            border-radius: 10px;
+            text-transform: uppercase;
+            color: $desaturatedDarkBlue;
+            visibility: hidden;
+            transition: all 0.25s ease-out;
+            span {
+              letter-spacing: 2px;
+            }
+            &.show {
+              visibility: visible;
+              transform: translate(-44%, -150%) scale(1);
+            }
+            &::after {
+              content: "";
+              background-color: $veryDarkGrayishBlue;
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              transform: translateY(50%) rotate(45deg);
+              margin: auto;
+              width: 15px;
+              height: 15px;
+            }
+            .closer {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+ion-icon {
+  display: block;
+  font-size: 20px;
+  color: white;
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+
+@media screen and (max-width: 768px) {
+  :root {
+    --fs-13: 12px;
+  }
+  body {
+    font-size: var(--fs-13);
+    .card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      width: 90%;
+      .banner-container {
+        border-radius: 10px 10px 0px 0px;
+      }
+      .card-infos-wrapper {
+        .card-footer {
+          .share {
+            z-index: 100;
+            position: static;
+            .btn {
+              padding: 0.5rem;
+              display: block;
+              border-radius: 50%;
+              border: none;
+              cursor: pointer;
+            }
+            .share-options {
+              padding: 0;
+              transform: translate(0) scale(0);
+              opacity: 0;
+              width: 100%;
+              top: auto;
+              bottom: 0;
+              padding: 1rem;
+              box-shadow: none;
+              background-color: $veryDarkGrayishBlue;
+              position: absolute;
+              left: 0;
+              border-radius: 0px 0px 10px 10px;
+              color: $desaturatedDarkBlue;
+              visibility: hidden;
+              transition: all 250ms ease-in-out;
+
+              span {
+                letter-spacing: 2px;
+              }
+              &.show {
+                visibility: visible;
+                transform: translate(0) scale(1);
+                opacity: 1;
+              }
+              &::after {
+                content: "";
+                display: none;
+              }
+              .closer {
+                display: block;
+                cursor: pointer;
+                margin-left: auto;
+                background-color: lightgray;
+                padding: 0.5rem;
+                border-radius: 50%;
+                color: $veryDarkGrayishBlue;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
